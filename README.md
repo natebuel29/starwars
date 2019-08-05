@@ -12,6 +12,3 @@ This was just a side project to help me practice using React.
 *Used a node package called Tachyons to make styling easier.
 	*https://tachyons.io/
 =======
-# starwars
-https://natebuel29.github.io/starwars/
->>>>>>> aa1b3bc76b8034c87486992b3effdfe8bc659eb7
