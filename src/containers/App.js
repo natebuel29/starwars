@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-import Buttons from './Buttons';
-import CardList from './CardList';
-import Card from './Card';
-import Scroll from './Scroll';
+import Buttons from '../components/Buttons';
+import CardList from '../components/CardList';
+import Scroll from '../components/Scroll';
 import './App.css'
 
 class App extends Component{
