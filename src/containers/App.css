@@ -3,7 +3,7 @@
 font-family: 'Starjedi';
 font-style: normal;
 font-weight: normal;
-src: url('../Media/Starjedi.ttf');
+src: url('./Media/Starjedi.ttf');
 }
 
 h1{
