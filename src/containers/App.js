@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import Buttons from '../components/Buttons';
 import CardList from '../components/CardList';
 import Scroll from '../components/Scroll';
+import SearchBox from '../components/SearchBox';
 import './App.css'
 
 class App extends Component{
 	constructor(){
 		super();
-		this.state ={
+		this.state ={	
 			doneLoading:true,
 			data:[],
 			urls:[ "https://swapi.co/api/people/",
@@ -18,7 +19,7 @@ class App extends Component{
 					"https://swapi.co/api/vehicles/",
 					"https://swapi.co/api/starships/"
 					],
-			type: ''
+			searchfield:''
 		};
 
 }
@@ -33,7 +34,7 @@ componentDidMount(){
 
 onClick = (event)=>{
 	if(this.state.doneLoading===true){
-			let fetchThis = (address)=>{
+		let fetchThis = (address)=>{
 					this.setState({doneLoading:false});
 					fetch(address)
 					.then(response=>response.json())
@@ -48,23 +49,35 @@ onClick = (event)=>{
 							fetchThis(stwapi.next);
 						}
 					})
-				}
-			let tempArray = this.state.urls
-			fetchThis(tempArray[event.target.id]);
-			this.setState({type:event.target.id});
+					}
+					let tempArray = this.state.urls
+					fetchThis(tempArray[event.target.id]);
+					this.setState({type:event.target.id});
 				
-		}
-}
+				}
+			}
 
+onSearch= (event)=>{
+	this.setState({searchfield:event.target.value});
+	}
 
 render(){
-	const dataArray = this.state.data;
+	const {data , searchfield} = this.state;
+	const filteredData = data.filter(info=>{
+		if(typeof info.name !== 'undefined'){
+		return info.name.toLowerCase().includes(searchfield.toLowerCase());
+		}
+		else{
+			return info.title.toLowerCase().includes(searchfield.toLowerCase());
+		}
+	})
 	return(
     <div className='tc'>
      	<h1 className="header">Star Wars</h1> 
+     	<SearchBox onSearch={this.onSearch} />
      	<Buttons onClick={this.onClick}/>
      	<Scroll>
-     	<CardList data={dataArray} type={this.state.type} />
+     	<CardList data={filteredData} />
      	</Scroll>
     </div>    );
 }
