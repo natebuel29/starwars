@@ -73,7 +73,7 @@ render(){
 	})
 	return(
     <div className='tc'>
-     	<h1 className="header">Everything Star Wars</h1> 
+     	<h1 className="header">Everything <br/> Star Wars</h1> 
      	<SearchBox onSearch={this.onSearch} />
      	<Buttons onClick={this.onClick}/>
      	<Scroll>
